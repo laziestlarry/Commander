@@ -59,7 +59,33 @@ gcloud scheduler jobs create http weeklyStrategyLoop \
   --location=us-central1 \
   --project=propulse-autonomax
 
+# Run the agent mission loop on Commander start
+nohup python3 agents/core/agent_runtime_loop.py &
+
 # Step 8: Launch Control Center UI (optional)
 echo "🚀 To launch Control Center UI, run: streamlit run dashboard/control_center.py"
 
+# Step 9: Trigger Revenue Modules 🔁
+
+echo "🚀 Running Shopify Sync..."
+nohup python3 fiverr_sync.py &
+
+echo "🚀 Running Fiverr Sync..."
+nohup python3 shopify_sync.py &
+
+echo "📺 Running YouTube Automation Bot..."
+nohup python3 launch_youtube_bot.py &
+
+# (Optional) Telegram Reporter or Email Trigger can go here if configured
+# echo "📨 Notifying Telegram..."
+# nohup python3 agents/utils/notify_telegram.py &
+
+# (Optional) Activate Secret Agent if needed at each boot
+# echo "🕵️ Running Secret Collector Agent..."
+# nohup python3 agents/secret_agent/secret_agent_online_collector.py &
+
+echo "✅ All Revenue Agents Activated."
+
+Launch dashboard automatically (comment out if using tmux)
+# streamlit run dashboard/control_center.py
 echo "✅ AutonomaX Commander setup complete. You’re ready to launch missions!"

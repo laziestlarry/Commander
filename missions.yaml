@@ -1,0 +1,36 @@
+missions:
+- description: Ensure gigs are updated, descriptions refreshed, and keywords optimized
+  id: M001
+  platform: Fiverr
+  title: Sync and Update Fiverr Gigs
+  trigger: 0 9 * * *
+- description: "Auto-generate and upload 15\u201330s Shorts from prompts and templates"
+  id: M002
+  platform: YouTube Shorts
+  title: Post YouTube Shorts with Hashtags
+  trigger: 0 */6 * * *
+- description: Pull all products, adjust prices by margin formula, update descriptions
+  id: M003
+  platform: Shopify
+  title: Shopify Product Sync and Pricing Check
+  trigger: 30 7 * * *
+- description: Run EtsyCommander sync if present, or notify if not configured
+  id: M004
+  platform: Etsy
+  title: Trigger Etsy Auto-Sync (if enabled)
+  trigger: 0 8 * * 0
+- description: Email and Telegram alert with revenue summary and goals status
+  id: M005
+  platform: Telegram
+  title: Send Daily Revenue Report
+  trigger: 0 21 * * *
+- description: Check trending services, generate auto-drafts for matching offers
+  id: M006
+  platform: Fiverr / Product Hunt
+  title: Scan for Top-Selling AI Services
+  trigger: 0 12 * * 5
+- description: Identify TikTok trends and generate mockup product from templates
+  id: M007
+  platform: TikTok / Shopify
+  title: "TikTok Trends \u2192 Product Matching"
+  trigger: 0 15 * * 6

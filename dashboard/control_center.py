@@ -1,26 +1,14 @@
+
 import streamlit as st
-from datetime import datetime
-import pandas as pd
+st.set_page_config(page_title="AutonomaX Control Center", layout="wide")
 
-st.set_page_config(page_title="🎮 AutonomaX Control Center", layout="wide")
-st.title("🎮 Commander Control Center")
+st.title("🧠 AutonomaX AI Commander Dashboard")
+st.sidebar.header("🔧 Control Panel")
+st.sidebar.page_link("pages/revenue_tracker.py", label="💰 Revenue Tracker")
+st.sidebar.page_link("pages/fiverr_status.py", label="🎯 Fiverr Status")
+st.sidebar.page_link("pages/shopify_status.py", label="🛒 Shopify Sync")
+st.sidebar.page_link("pages/youtube_auto.py", label="📺 YouTube Automation")
+st.sidebar.page_link("pages/agent_console.py", label="🤖 Agent Console")
+st.sidebar.page_link("pages/logs_viewer.py", label="📜 Logs Viewer")
 
-st.sidebar.header("Agent Commands")
-if st.sidebar.button("🚀 Launch Agents"):
-    st.success("Agents launched at " + datetime.now().strftime("%H:%M:%S"))
-
-if st.sidebar.button("🔁 Sync Logs"):
-    st.info("Sync initiated...")
-
-if st.sidebar.button("📈 View Revenue Tracker"):
-    st.switch_page("revenue_tracker.py")
-
-if st.sidebar.button("🧠 Strategy Visualizer"):
-    st.switch_page("strategy_visualizer.py")
-
-st.markdown("### 🧠 Latest Summary Logs")
-try:
-    logs = pd.read_csv("data/revenue_log.csv")
-    st.dataframe(logs.tail(10))
-except:
-    st.warning("No logs found yet.")
+st.success("Welcome to AutonomaX Control Center. Use sidebar to manage operations.")

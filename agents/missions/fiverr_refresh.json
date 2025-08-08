@@ -1,0 +1,1 @@
+{'title': 'Fiverr Gig Refresher', 'description': 'Auto-refresh Fiverr gigs', 'module': 'fiverr_refresh_agent', 'interval': 5400}

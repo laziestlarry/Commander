@@ -1,0 +1,1 @@
+{'title': 'Link Distribution Bot', 'description': 'Auto-post links to external platforms', 'module': 'link_spreader_agent', 'interval': 10800}

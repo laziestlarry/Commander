@@ -1,0 +1,1 @@
+{'title': 'Etsy Product Sync', 'description': 'Upload/sync digital products to Etsy via automation', 'module': 'etsy_sync_agent', 'interval': 3600}

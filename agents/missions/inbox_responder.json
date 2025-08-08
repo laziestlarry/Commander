@@ -1,0 +1,1 @@
+{'title': 'AI Customer Inbox Bot', 'description': 'Auto-respond to customer messages with GPT', 'module': 'inbox_responder_agent', 'interval': 600}
