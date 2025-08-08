@@ -1,15 +1,13 @@
-import functions_framework
-from agents.trainer import train_agents_with_playbook
-from scenarios.weekly_scenarios import get_weekly_missions
-from services.telegram_notifier import send_telegram_report
+from flask import Flask, jsonify
 
-@functions_framework.http
-def strategyLoop(request):
-    try:
-        missions = get_weekly_missions()
-        results = train_agents_with_playbook(missions)
-        send_telegram_report("✅ Weekly strategy training complete. Agents trained.")
-        return "Strategy loop completed", 200
-    except Exception as e:
-        send_telegram_report(f"❌ Strategy loop failed: {str(e)}")
-        return f"Error: {str(e)}", 500
+app = Flask(__name__)
+
+@app.route("/", methods=["GET"])
+def index():
+    return jsonify({
+        "result": "Strategy loop active",
+        "status": "success"
+    }), 200
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=8080)

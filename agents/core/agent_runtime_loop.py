@@ -1,33 +1,26 @@
-# Commander_Orchestrated_Online - Final Main Runtime Script
-# agent_runtime_loop.py
-
 import time
+import requests
 import logging
-from agents.mission_loader import load_missions
 
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    handlers=[logging.StreamHandler()]
-)
-logger = logging.getLogger("agents.mission_loader")
+logging.basicConfig(level=logging.INFO)
 
-
-def execute_missions():
-    logger.info("\U0001F680 Executing scheduled agent missions...")
-    missions = load_missions()
-
-    for mission in missions:
-        try:
-            logger.info(f"\u2705 Running: {mission['name']} - {mission['description']}")
-            mission['function']()
-            logger.info(f"\u2714\ufe0f Completed: {mission['name']}")
-        except Exception as e:
-            logger.error(f"\u274C Mission failed: {e}")
-
+def ping_service(name, url):
+    logging.info(f"⏳ Calling {name} service...")
+    try:
+        response = requests.get(url)
+        if response.status_code == 200:
+            logging.info(f"✅ {name} Success: {response.json()}")
+        else:
+            logging.error(f"❌ {name} Failed with status {response.status_code}: {response.text}")
+    except Exception as e:
+        logging.error(f"❌ Error calling {name}: {str(e)}")
 
 if __name__ == "__main__":
     while True:
-        execute_missions()
-        logger.info("\U0001F4A4 Sleeping 30 seconds before next loop...")
-        time.sleep(30)
+        logging.info("🚀 Executing Commander AI Bind Loop...")
+
+        ping_service("Shopify Sync", "https://syncshopify-service-71658389068.us-central1.run.app")
+        ping_service("Strategy Loop", "https://strategyloop-service-71658389068.us-central1.run.app")
+
+        logging.info("💤 Sleeping 60 seconds before next bind loop...\n")
+        time.sleep(60)

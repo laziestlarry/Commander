@@ -1,27 +1,75 @@
-name: Deploy to Google Cloud Functions
+name: 🚀 Deploy All AutonomaX Services to Cloud Run
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+  REGION: ${{ secrets.GCP_REGION }}
 
 jobs:
-  deploy:
+  deploy-syncshopify:
+    name: 🛒 Deploy syncShopify Service
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name: Setup gcloud CLI
-        uses: google-github-actions/setup-gcloud@v1
+      - name: Setup Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
         with:
           project_id: ${{ secrets.GCP_PROJECT_ID }}
           service_account_key: ${{ secrets.GCP_SA_KEY }}
           export_default_credentials: true
 
-      - name: Deploy syncShopify
-        run: |
-          gcloud functions deploy syncShopify --region=us-central1 --gen2 --runtime python311 --source=cloudfunctions/syncShopify --entry-point=syncShopify --trigger-http --allow-unauthenticated
+      - name: Deploy to Cloud Run - syncShopify
+        uses: google-github-actions/deploy-cloudrun@v2
+        with:
+          service: syncshopify-service
+          region: ${{ env.REGION }}
+          source: ./cloudfunctions/syncShopify
 
-      - name: Deploy strategyLoop
-        run: |
-          gcloud functions deploy strategyLoop --region=us-central1 --gen2 --runtime python311 --source=cloudfunctions/strategyLoop --entry-point=strategyLoop --trigger-http --allow-unauthenticated
+  deploy-strategyloop:
+    name: 🧠 Deploy strategyLoop Service
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+        with:
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          export_default_credentials: true
+
+      - name: Deploy to Cloud Run - strategyLoop
+        uses: google-github-actions/deploy-cloudrun@v2
+        with:
+          service: strategyloop-service
+          region: ${{ env.REGION }}
+          source: ./cloudfunctions/strategyLoop
+
+  deploy-fiverrsync:
+    name: 🎯 Deploy fiverrSync Service
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+        with:
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          export_default_credentials: true
+
+      - name: Deploy to Cloud Run - fiverrSync
+        uses: google-github-actions/deploy-cloudrun@v2
+        with:
+          service: fiverrsync-service
+          region: ${{ env.REGION }}
+          source: ./cloudfunctions/fiverrSync
