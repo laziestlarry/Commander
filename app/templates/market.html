@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Market Analysis - AutonomaX Commander</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-4">
+    <h1>Market Analysis & Trends</h1>
+    <hr>
+    <form method="post" class="mb-3">
+        <div class="mb-3">
+            <input type="text" name="trend" class="form-control" placeholder="Market Trend">
+        </div>
+        <div class="mb-3">
+            <input type="text" name="demand" class="form-control" placeholder="Demand">
+        </div>
+        <div class="mb-3">
+            <input type="text" name="supply" class="form-control" placeholder="Supply">
+        </div>
+        <button class="btn btn-primary" type="submit">Add Market Data</button>
+    </form>
+    <h3>Trends</h3>
+    <ul>
+        {% for trend in trends %}
+            <li>{{ trend }}</li>
+        {% else %}
+            <li>No trends yet.</li>
+        {% endfor %}
+    </ul>
+    <h3>Demand & Supply</h3>
+    <ul>
+        <li>Demand: {{ demand_supply.demand or 'N/A' }}</li>
+        <li>Supply: {{ demand_supply.supply or 'N/A' }}</li>
+    </ul>
+    <a href="/" class="btn btn-secondary mt-3">Back to Dashboard</a>
+</div>
+</body>
+</html>

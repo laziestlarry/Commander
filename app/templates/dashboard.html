@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<body style="background: #f8fafc;">
+<nav class="navbar navbar-expand-lg navbar-dark" style="background: #1a237e;">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold" href="/">PropulseGroup | AutonomaX Commander</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="/archive">Archive</a></li>
+        <li class="nav-item"><a class="nav-link" href="/crm">CRM</a></li>
+        <li class="nav-item"><a class="nav-link" href="/portfolio">Portfolio</a></li>
+        <li class="nav-item"><a class="nav-link" href="/product_offers">Product Offers</a></li>
+        <li class="nav-item"><a class="nav-link" href="/service_workflows">Service Workflows</a></li>
+        <li class="nav-item"><a class="nav-link" href="/procurement">Procurement</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8">
+            <h1 class="mb-3" style="color:#1a237e;">Unified Business Dashboard</h1>
+            <hr>
+            <h3>Income Streams</h3>
+            <ul>
+                {% for stream in dashboard.income_streams %}
+                    <li>{{ stream }}</li>
+                {% else %}
+                    <li>No active income streams.</li>
+                {% endfor %}
+            </ul>
+            <h3>Partner Health</h3>
+            <pre>{{ dashboard.partner_health | tojson(indent=2) }}</pre>
+            <h3>Pending Actions</h3>
+            <ul>
+                {% for action in dashboard.pending_actions %}
+                    <li>{{ action }}</li>
+                {% else %}
+                    <li>All actions complete.</li>
+                {% endfor %}
+            </ul>
+            <h3>Earnings</h3>
+            <ul>
+                <li>Daily: ${{ dashboard.earnings.daily }}</li>
+                <li>Weekly: ${{ dashboard.earnings.weekly }}</li>
+                <li>Monthly: ${{ dashboard.earnings.monthly }}</li>
+            </ul>
+            <h3>Alerts</h3>
+            <ul>
+                {% for alert in dashboard.alerts %}
+                    <li>{{ alert }}</li>
+                {% else %}
+                    <li>No alerts.</li>
+                {% endfor %}
+            </ul>
+        </div>
+<div class="card mb-4">
+    <div class="card-header bg-secondary text-white">Quick Links</div>
+    <div class="card-body">
+        <ul class="list-unstyled">
+            <li><a href="/meetings">Meetings</a></li>
+            <li><a href="/dept_agendas">Department Agendas</a></li>
+            <li><a href="/communications">Corporate Communications</a></li>
+            <li><a href="/market">Market Analysis</a></li>
+            <li><a href="/ratios">Business Ratios</a></li>
+            <li><a href="/competitors">Competitors</a></li>
+            <li><a href="/customers">Customers</a></li>
+            <li><a href="/mvp">MVP Analysis</a></li>
+            <li><a href="/procedures">Procedures</a></li>
+            <li><a href="/frameworks">Frameworks</a></li>
+            <li><a href="/realization_logs">Realization Logs</a></li>
+            <li><a href="/procurement">Procurement & Workflow</a></li>
+        </ul>
+    </div>
+</div>
+            <div class="card mb-4">
+                <div class="card-header bg-secondary text-white">Quick Links</div>
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        <li><a href="/meetings">Meetings & Agendas</a></li>
+                        <li><a href="/communications">Corporate Communications</a></li>
+                        <li><a href="/market">Market Analysis</a></li>
+                        <li><a href="/ratios">Business Ratios</a></li>
+                        <li><a href="/competitors">Competitors</a></li>
+                        <li><a href="/customers">Customers</a></li>
+                        <li><a href="/mvp">MVP Analysis</a></li>
+                        <li><a href="/procedures">Procedures</a></li>
+                        <li><a href="/frameworks">Frameworks</a></li>
+                        <li><a href="/realization_logs">Realization Logs</a></li>
+                        <li><a href="/procurement">Procurement & Workflow</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center">
+                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Lazy Larry" width="80" class="mb-2">
+                <div class="fw-bold">PropulseGroup | AutonomaX</div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+            <input type="text" name="action" class="form-control" placeholder="Trigger new strategy/action" required>
+            <button class="btn btn-primary" type="submit">Trigger</button>
+        </div>
+    </form>
+    <div class="mt-4">
+        <a href="/archive" class="btn btn-secondary">View Archive</a>
+        <a href="/crm" class="btn btn-info ms-2">CRM</a>
+        <a href="/meetings" class="btn btn-outline-primary ms-2">Meetings</a>
+        <a href="/dept_agendas" class="btn btn-outline-primary ms-2">Dept Agendas</a>
+        <a href="/communications" class="btn btn-outline-primary ms-2">Communications</a>
+        <a href="/portfolio" class="btn btn-outline-primary ms-2">Portfolio</a>
+        <a href="/ratios" class="btn btn-outline-primary ms-2">Ratios</a>
+        <a href="/market" class="btn btn-outline-primary ms-2">Market</a>
+        <a href="/mvp" class="btn btn-outline-primary ms-2">MVP</a>
+        <a href="/competitors" class="btn btn-outline-primary ms-2">Competitors</a>
+        <a href="/customers" class="btn btn-outline-primary ms-2">Customers</a>
+        <a href="/procedures" class="btn btn-outline-primary ms-2">Procedures</a>
+        <a href="/frameworks" class="btn btn-outline-primary ms-2">Frameworks</a>
+        <a href="/realization_logs" class="btn btn-outline-primary ms-2">Realization Logs</a>
+        <a href="/service_workflows" class="btn btn-outline-success ms-2">Service Workflows</a>
+        <a href="/product_offers" class="btn btn-outline-success ms-2">Product Offers</a>
+    </div>
+</div>
+</body>
+</html>

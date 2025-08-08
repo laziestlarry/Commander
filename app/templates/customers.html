@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customers - AutonomaX Commander</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-4">
+    <h1>Customer Information</h1>
+    <hr>
+    <form method="post" class="mb-3">
+        <div class="mb-3">
+            <input type="text" name="name" class="form-control" placeholder="Customer Name" required>
+        </div>
+        <div class="mb-3">
+            <textarea name="info" class="form-control" placeholder="Information"></textarea>
+        </div>
+        <button class="btn btn-primary" type="submit">Add Customer</button>
+    </form>
+    <h3>Customers</h3>
+    <ul>
+        {% for customer in customers %}
+            <li><strong>{{ customer.name }}</strong>: {{ customer.info }}</li>
+        {% else %}
+            <li>No customers yet.</li>
+        {% endfor %}
+    </ul>
+    <a href="/" class="btn btn-secondary mt-3">Back to Dashboard</a>
+</div>
+</body>
+</html>

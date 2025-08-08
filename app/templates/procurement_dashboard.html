@@ -1,0 +1,62 @@
+<!-- Procurement Dashboard Template -->
+{% extends "dashboard.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Procurement & Operational Workflow</h2>
+    <ul>
+        <li><strong>Commercial Objective:</strong> Generate early and consistent financial gains through commercialized products.</li>
+        <li><strong>Input Parameters:</strong>
+            <ul>
+                <li>Market Demand: {{ input_data.market_demand }}</li>
+                <li>Supply Capability: {{ input_data.supply_capability }}</li>
+                <li>Investment Target: ${{ input_data.investment_target }}</li>
+                <li>Inventory Status: {{ input_data.inventory_status }}</li>
+                <li>Customer Insights: {{ input_data.customer_insights }}</li>
+                <li>Financial KPIs: {{ input_data.financial_kpis }}</li>
+            </ul>
+        </li>
+        <li><strong>Schema Components:</strong>
+            <ul>
+                <li>Vendors: {{ vendors }}</li>
+                <li>Inventory Plan: {{ inventory_plan }}</li>
+                <li>Budget: {{ budget }}</li>
+                <li>Contracts: {{ contracts }}</li>
+            </ul>
+        </li>
+        <li><strong>Outputs:</strong>
+            <ul>
+                <li>Fulfilled Deliveries: {{ outputs.fulfilled_deliveries }}</li>
+                <li>Transaction-Ready Inventory: {{ outputs.transaction_ready_inventory }}</li>
+                <li>Spend Reports: {{ outputs.spend_reports }}</li>
+                <li>EBITDA Projections: {{ outputs.ebitda_projections }}</li>
+                <li>Optimized Costs: {{ outputs.optimized_costs }}</li>
+            </ul>
+        </li>
+    </ul>
+    <h4>Operational Workflow Phases</h4>
+    <ol>
+        {% for phase in workflow_phases %}
+            <li {% if phase == workflow_status %}class="fw-bold text-primary"{% endif %}>{{ phase }}</li>
+        {% endfor %}
+    </ol>
+    <form method="post" class="mb-3">
+        <button class="btn btn-success" name="action" value="next_phase" type="submit">Advance Workflow Phase</button>
+    </form>
+    <h5>Gantt Schedule Overview</h5>
+    <ul>
+        <li>Week 1: Market research, SKU & supplier selection</li>
+        <li>Week 2–3: Contracting, procurement, inventory setup</li>
+        <li>Week 4–6: Demand matching, fulfillment, engagement</li>
+        <li>Week 7: Financial closure, EBITDA tracking, lessons learned</li>
+    </ul>
+    <h5>Process Map</h5>
+    <pre>Customer Insights → Forecasting → Procurement Plan → Vendor Orders
+      ▲                                                    ▼
+Returns Data ← Fulfillment ← Inventory ← Supplier Shipments</pre>
+    <h5>Team & Tools</h5>
+    <ul>
+        <li>Roles: Procurement Lead, Demand Analyst, Fulfillment Coordinator, Finance Controller</li>
+        <li>Tools: ERP, CRM, KPI dashboards, Gantt Manager, Social Suite</li>
+    </ul>
+</div>
+{% endblock %}

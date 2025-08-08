@@ -1,0 +1,41 @@
+# app/templates/crm.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CRM - AutonomaX Commander</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-4">
+    <h1>Customer Relationship Management (CRM)</h1>
+    <hr>
+    <h3>Customer List</h3>
+    <ul>
+        {% for customer in crm.customers %}
+            <li>{{ customer.name }} - {{ customer.email }} <span class="badge bg-info">{{ customer.status }}</span></li>
+        {% else %}
+            <li>No customers yet.</li>
+        {% endfor %}
+    </ul>
+    <h3>Add Customer</h3>
+    <form method="post">
+        <div class="mb-3">
+            <input type="text" name="name" class="form-control" placeholder="Name" required>
+        </div>
+        <div class="mb-3">
+            <input type="email" name="email" class="form-control" placeholder="Email" required>
+        </div>
+        <div class="mb-3">
+            <select name="status" class="form-select">
+                <option value="lead">Lead</option>
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+            </select>
+        </div>
+        <button class="btn btn-primary" type="submit">Add Customer</button>
+    </form>
+    <a href="/" class="btn btn-secondary mt-3">Back to Dashboard</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,9 @@
+steps:
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['run', 'deploy', 'autonomax-commander',
+           '--source=.',
+           '--entry-point=app.dashboard_flask:app',
+           '--platform=managed',
+           '--region=us-central1',
+           '--allow-unauthenticated']
+timeout: '900s'

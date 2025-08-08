@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>🧠 AI Commander Chat</title>
+  <script>
+    async function askBot() {
+      const userMsg = document.getElementById("msg").value;
+      const res = await fetch("/api/chatbot", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt: userMsg })
+      });
+      const data = await res.json();
+      document.getElementById("response").innerText = data.response;
+    }
+  </script>
+</head>
+<body>
+  <h2>🧠 Ask Commander</h2>
+  <input id="msg" placeholder="Type your mission..." />
+  <button onclick="askBot()">Send</button>
+  <p id="response">...</p>
+</body>
+</html>
